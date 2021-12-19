@@ -4,8 +4,10 @@
  * @return {number[]}
  */
 var twoSum = function(nums, target) {
-    var storage = {};
-    for (var i = 0; i < nums.length; i++) {
+    var storage = {
+        [nums[0]]: 0,
+    };
+    for (var i = 1; i < nums.length; i++) {
         if (storage[target - nums[i]] !== undefined) {
             return [storage[target - nums[i]], i];
         } else {
