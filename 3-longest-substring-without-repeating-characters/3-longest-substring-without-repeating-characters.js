@@ -14,11 +14,10 @@ var lengthOfLongestSubstring = function(s) {
     for (var j = 0; j < s.length; j++) {
         if (map[s[j]] < i) {
             map[s[j]] = j;
-            longest < s.substring(i, j + 1).length ? longest = s.substring(i, j + 1).length : null;
-        }
-        else if (map[s[j]] === undefined) {
+            longest = Math.max(longest, s.substring(i, j + 1).length);
+        } else if (map[s[j]] === undefined) {
             map[s[j]] = j;
-            longest < s.substring(i, j + 1).length ? longest = s.substring(i, j + 1).length : null;
+            longest = Math.max(longest, s.substring(i, j + 1).length);
         } else {
             i = map[s[j]] + 1;
             map[s[j]] = j;
