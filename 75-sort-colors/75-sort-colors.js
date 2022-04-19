@@ -24,6 +24,4 @@ var sortColors = function(nums) {
             current++;
         }
     }
-    
-    return nums;
 };
