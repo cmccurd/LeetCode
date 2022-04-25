@@ -2,23 +2,15 @@
  * @param {number[]} stones
  * @return {number}
  */
-
-    var lastStoneWeight = function(stones) {
-    let size = stones.length;
-     
-    while(size >= 2){
-        stones.sort((a,b)=> { return a-b })
-        
-        x = stones.pop(); 
-        y = stones.pop();
-        
-        if(x == y){
-            size -= 2;
-        }else{
-            size -= 1; 
-            stones.unshift(x - y); 
-        }
+var lastStoneWeight = function(stones) {
+    if (stones.length === 1) {
+        return stones.pop();
     }
-    
-    return stones;
+    stones.sort((a, b) => {
+        return a-b;
+    });
+    let last = stones.pop();
+    let last2 = stones.pop();
+    stones.push(last-last2);
+    return lastStoneWeight(stones);
 };
