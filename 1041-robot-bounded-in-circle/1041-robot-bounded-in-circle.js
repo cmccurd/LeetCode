@@ -59,4 +59,3 @@ var isRobotBounded = function(instructions) {
         return true;
     }
 };
-
