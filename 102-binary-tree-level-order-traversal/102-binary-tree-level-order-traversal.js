@@ -16,7 +16,7 @@ var levelOrder = function(root) {
     if (root) {
         queue.push(root);
     }
-    while (queue.length > 0) {
+    while (queue.length) {
         var current = [];
         var l = queue.length;
         for (var i = 0; i < l; i++) {
@@ -29,7 +29,9 @@ var levelOrder = function(root) {
                 queue.push(node.right);
             }
         }
-        result.push(current);
+        if (current.length) {
+            result.push(current);
+        }
     }
     return result;
 };
