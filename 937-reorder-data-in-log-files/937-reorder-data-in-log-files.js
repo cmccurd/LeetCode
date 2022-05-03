@@ -3,33 +3,33 @@
  * @return {string[]}
  */
 var reorderLogFiles = function(logs) {
-    var letter_log = [];
-    var digit_log = [];
+    //first word identifier
+    var letterLogs = [];
+    var digitLogs = [];
     
     for (var log of logs) {
-        var arr = log.split(' ');
-        var identifier =  arr.shift();
-        var contents = arr.join(' ');
+        var space = log.indexOf(' ');
+        var contents = log.substring(space + 1);
         if (contents.search(/[a-z]/) === 0) {
-            letter_log.push([contents, log]);
+            letterLogs.push([contents, log]);
         } else {
-            digit_log.push(log);
+            digitLogs.push(log);
         }
     }
     
-    var sort = letter_log.sort((a,b) => {
+    letterLogs.sort((a, b) => {
         var compare = a[0].localeCompare(b[0]);
         if (compare === 0) {
             return a[1].localeCompare(b[1]);
+        } else {
+            return compare;
         }
-        return compare;
     });
-
+    
     var result = [];
-    for (var key of sort) {
-        result.push(key[1]);
+    for (var i of letterLogs) {
+        result.push(i[1]);
     }
-    result = result.concat(digit_log);
-    return result;
-
+    
+    return [...result, ...digitLogs]
 };
