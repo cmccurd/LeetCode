@@ -12,16 +12,13 @@
  */
 var mergeTwoLists = function(list1, list2) {
     if (list1 === null && list2 === null) {
-        return null
+        return null;
     }
-    var result;
     if (list1 === null) {
-        return new ListNode(list2.val, mergeTwoLists(list1, list2.next));
+        return new ListNode(list2.val, mergeTwoLists(null, list2.next));
     }
     if (list2 === null) {
-        return new ListNode(list1.val, mergeTwoLists(list1.next, list2));
+        return new ListNode(list1.val, mergeTwoLists(list1.next, null));
     }
-    list1.val <= list2.val ? result = new ListNode(list1.val, mergeTwoLists(list1.next, list2)) : result = new ListNode(list2.val, mergeTwoLists(list1, list2.next));
-    
-    return result;
+    return list1.val > list2.val ? new ListNode(list2.val, mergeTwoLists(list1, list2.next)) : new ListNode(list1.val, mergeTwoLists(list1.next, list2));
 };
