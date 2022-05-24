@@ -10,15 +10,19 @@ var numPairsDivisibleBy60 = function(time) {
     
     var result = 0;
     var i = 0;
+    var map = {};
     
     while (i < time.length) {
-        var j = i + 1;
-        while (j < time.length) {
-            if ((time[i] + time[j]) % 60 === 0) {
-                result++;
-            }
-            j++;
+        var remainder = time[i] % 60; // 30
+        if (map[(60 - remainder) % 60] !== undefined) {
+            result += map[(60 - remainder) % 60];
         }
+        if (map[remainder] !== undefined) {
+            map[remainder] += 1;
+        } else {
+            map[remainder] = 1;
+        }
+        
         i++;
     }
     return result;
