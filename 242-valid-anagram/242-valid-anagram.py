@@ -3,11 +3,14 @@ class Solution:
         if len(s) != len(t):
             return False
         cntrS = Counter(s)
+        l = len(cntrS)
         for char in t:
             if char in cntrS:
                 cntrS[char] -= 1
-                if len(+cntrS) == 0:
-                    return True
+                if cntrS[char] == 0:
+                    l -= 1
+                    if l == 0:
+                        return True
             else:
                 return False
         return False
