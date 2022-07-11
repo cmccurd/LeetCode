@@ -4,8 +4,6 @@ class Solution:
         
         
         pos = int(r / 2)
-        if nums[pos] == target: 
-            return pos
         while l <= r:
             if nums[pos] > target:
                 r = pos - 1
