@@ -4,6 +4,5 @@ class Solution:
         for x in nums:
             if x in map:
                 return True
-            else:
-                map[x] = False
+            map[x] = 0
         return False
