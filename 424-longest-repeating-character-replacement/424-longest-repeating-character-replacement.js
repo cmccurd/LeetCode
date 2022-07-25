@@ -19,21 +19,22 @@ var characterReplacement = function(s, k) {
         
         let totalC = 0;
         let maxC = 0;
+        let maxKey = '';
         for (var key in chars) {
             totalC += chars[key];
-            maxC = Math.max(maxC, chars[key])
+            if (chars[key] >= maxC) {
+                maxC = chars[key];
+            }
         }
         
         while (totalC - maxC > k) {
             let leftChar = s[l];
             chars[leftChar]--;
             l++
-            totalC = 0;
-            maxC = 0;
-            for (var key in chars) {
-                totalC += chars[key];
-                maxC = Math.max(maxC, chars[key])
+            if (leftChar === maxKey) {
+                maxC--;
             }
+            totalC--;
         }
             
         res = Math.max(res, totalC);
