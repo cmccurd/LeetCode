@@ -3,27 +3,26 @@
  * @return {number}
  */
 var lengthOfLongestSubstring = function(s) {
-    //hold longest substring value
-    //use sliding window algo to find all substrings
-    //create a map of current chars
-    //return the value
+    const hash = {};
+    let start = 0;
+    let max = 0;
     
-    let longest = 0;
-    let i = 0;
-    var map = {};
-    for (var j = 0; j < s.length; j++) {
-        if (map[s[j]] < i) {
-            map[s[j]] = j;
-            longest = Math.max(longest, s.substring(i, j + 1).length);
-        } else if (map[s[j]] === undefined) {
-            map[s[j]] = j;
-            longest = Math.max(longest, s.substring(i, j + 1).length);
-        } else {
-            i = map[s[j]] + 1;
-            map[s[j]] = j;
+    for (let i = 0; i < s.length; i++) {
+        let rightChar = s[i];
+        
+        if (!hash[rightChar]) {
+            hash[rightChar] = 0;
         }
+        hash[rightChar]++;
+        
+        while (hash[rightChar] > 1) {
+            let leftChar = s[start];
+            hash[leftChar]--;
+            start++;
+        }
+        max = Math.max(max, i - start + 1)
     }
-    return longest;
+    return max
 };
 
 //given
