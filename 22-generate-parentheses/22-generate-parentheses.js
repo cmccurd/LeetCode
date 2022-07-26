@@ -6,9 +6,9 @@ var generateParenthesis = function(n) {
     const res = [];
     
     const recurse = (perm, close, open) => {
-        console.log(perm)
         if (open === n && close === n) {
             res.push(perm);
+            return
         } else {
             if (open > close && open < n) {
                 recurse(perm + '(', close, open + 1);
