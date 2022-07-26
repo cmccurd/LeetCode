@@ -10,13 +10,11 @@ var generateParenthesis = function(n) {
             res.push(perm);
             return
         } else {
-            if (open > close && open < n) {
+            if (open < n) {
                 recurse(perm + '(', close, open + 1);
-                recurse(perm + ')', close + 1, open);
-            } else if (open === n) {
+            }
+            if (open > close) {
                 recurse(perm + ')', close + 1, open);       
-            } else {
-                recurse(perm + '(', close, open + 1);
             }
         }
     }
