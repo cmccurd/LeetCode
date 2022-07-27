@@ -4,42 +4,34 @@
  * @return {number}
  */
 var characterReplacement = function(s, k) {
-    let chars = {};
-    res = 0;
+    const hash = {};
     let l = 0;
-    let r = 0;
+    let res = 0;
     
-    while (r < s.length) {
-        let rightChar = s[r];
+    for (var r = 0; r < s.length; r++) {
+        var rightChar = s[r];
         
-        if (!chars[rightChar]) {
-            chars[rightChar] = 0;
+        if (!hash[rightChar]) {
+            hash[rightChar] = 0;
         }
-        chars[rightChar]++;
+        hash[rightChar]++;
+        var max = 0;
         
-        let totalC = 0;
-        let maxC = 0;
-        let maxKey = '';
-        for (var key in chars) {
-            totalC += chars[key];
-            if (chars[key] >= maxC) {
-                maxC = chars[key];
+        for (const k in hash) {
+            max = Math.max(max, hash[k]);
+        }
+        
+        while ((r - l + 1) - max  > k) {
+            var leftChar = s[l];
+            hash[leftChar]--;
+            l++;
+            max = 0;
+        
+            for (const key in hash) {
+                max = Math.max(max, hash[key]);
             }
         }
-        
-        while (totalC - maxC > k) {
-            let leftChar = s[l];
-            chars[leftChar]--;
-            l++
-            if (leftChar === maxKey) {
-                maxC--;
-            }
-            totalC--;
-        }
-            
-        res = Math.max(res, totalC);
-        r++;
+        res = Math.max(res, r - l + 1);
     }
-    
-    return res;
+    return res
 };
