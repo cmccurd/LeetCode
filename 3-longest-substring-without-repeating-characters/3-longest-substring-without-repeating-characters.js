@@ -4,29 +4,24 @@
  */
 var lengthOfLongestSubstring = function(s) {
     const hash = {};
-    let start = 0;
-    let max = 0;
+    var l = 0;
+    let res = 0;
     
-    for (let i = 0; i < s.length; i++) {
-        let rightChar = s[i];
+    for (var right = 0; right < s.length; right++) {
+        var rightChar = s[right];
         
         if (!hash[rightChar]) {
             hash[rightChar] = 0;
         }
         hash[rightChar]++;
         
+        
         while (hash[rightChar] > 1) {
-            let leftChar = s[start];
+            var leftChar = s[l];
             hash[leftChar]--;
-            start++;
+            l++;
         }
-        max = Math.max(max, i - start + 1)
+        res = Math.max(res, right - l + 1);
     }
-    return max
+    return res;
 };
-
-//given
-//s = "abcdaf" bcdaf
-//s = "abcdbfg" cdbfg
-
-//s = "tmmzuxt" mzuxt
