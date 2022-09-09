@@ -9,17 +9,16 @@ var trap = function(height) {
     var result = 0;
     
     var max = 0;
+    var maxR = 0;
+    var j = height.length - 2;
     for (var i = 1; i < height.length; i++) {
         max = Math.max(max, height[i - 1]);
         maxLeft.push(max);
+        maxR = Math.max(maxR, height[j+1]);
+        maxRight.unshift(maxR);
+        j--;
     }
-    
-    max = 0;
-    for (var i = height.length - 2; i >= 0; i--) {
-        max = Math.max(max, height[i+1]);
-        maxRight.unshift(max);
-    }
-    
+
     for (var i = 0; i < height.length; i++) {
         minLR.push(Math.min(maxRight[i], maxLeft[i]));
     }
