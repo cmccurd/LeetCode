@@ -4,12 +4,16 @@
  * @return {number[]}
  */
 var twoSum = function(nums, target) {
-    var storage = {};
+    var hash = {}; // number, index
+    
     for (var i = 0; i < nums.length; i++) {
-        if (storage[nums[i]] !== undefined) {
-            return [storage[nums[i]], i];
+        var x = nums[i];
+        
+        if (target - x in hash) {
+            return [hash[target-x], i];
         } else {
-            storage[target-nums[i]] = i;
+            hash[x] = i;
         }
     }
+    
 };
